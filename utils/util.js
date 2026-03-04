@@ -98,10 +98,46 @@ const validateLotteryData = (data) => {
   };
 };
 
+/**
+ * 计算抽签活动状态
+ * 统一的状态计算逻辑，确保详情页和列表页状态一致
+ * @param {Object} event - 活动对象，包含 startTime, endTime, categories
+ * @returns {String} 'not_started' | 'ongoing' | 'ended'
+ */
+const getEventStatus = (event) => {
+  if (!event) return 'ended';
+  
+  const now = new Date();
+  const startTime = new Date(event.startTime);
+  const endTime = new Date(event.endTime);
+
+  // 未开始
+  if (now < startTime) {
+    return 'not_started';
+  }
+  
+  // 已结束（时间已过）
+  if (now > endTime) {
+    return 'ended';
+  }
+  
+  // 检查是否所有类目都已抽完
+  if (event.categories && event.categories.length > 0) {
+    const allCategoriesFull = event.categories.every(cat => cat.remaining === 0);
+    if (allCategoriesFull) {
+      return 'ended';
+    }
+  }
+  
+  // 进行中
+  return 'ongoing';
+};
+
 module.exports = {
   formatTime,
   validateTitle,
   validateCategories,
   validateTimeRange,
-  validateLotteryData
+  validateLotteryData,
+  getEventStatus
 };

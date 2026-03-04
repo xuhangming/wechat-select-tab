@@ -150,89 +150,88 @@
 /* 用户信息卡片 */
 .user-card {
   background: #FFFFFF;
-  border-radius: 20rpx;
-  padding: 28rpx 24rpx;
-  margin-bottom: 16rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
-  gap: 20rpx;
+  gap: 16rpx;
 }
 
 .user-avatar {
-  width: 96rpx;
-  height: 96rpx;
-  border-radius: 48rpx;
-}
-
-.user-info {
-  flex: 1;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  flex-shrink: 0;
 }
 
 .user-name {
-  font-size: 32rpx;
-  font-weight: 600;
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 500;
   color: #1F2937;
 }
 
 .logout-btn {
-  padding: 14rpx 28rpx;
+  padding: 12rpx 24rpx;
   background: #F3F4F6;
   border: none;
-  border-radius: 24rpx;
-  font-size: 26rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
   color: #6B7280;
-  line-height: 1;
+  line-height: 1.2;
+  flex-shrink: 0;
 }
 
 .logout-btn::after {
   border: none;
 }
 
-.logout-text {
-  color: #6B7280;
-}
-
 /* 快捷导航卡片 */
 .nav-cards {
-  margin-bottom: 24rpx;
+  margin-bottom: 32rpx;
 }
 
 .nav-card {
   background: #FFFFFF;
-  border-radius: 20rpx;
-  padding: 32rpx 28rpx;
-  margin-bottom: 12rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+  border-radius: 16rpx;
+  padding: 28rpx 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
-  gap: 20rpx;
+  gap: 16rpx;
 }
 
-.nav-icon {
-  width: 80rpx;
-  height: 80rpx;
-  background: #EEF2FF;
-  border-radius: 20rpx;
+.nav-icon-wrapper {
+  width: 72rpx;
+  height: 72rpx;
+  background: #F3F4F6;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40rpx;
   flex-shrink: 0;
+}
+
+.nav-icon {
+  font-size: 36rpx;
 }
 
 .nav-title {
   flex: 1;
-  font-size: 30rpx;
-  font-weight: 500;
+  font-size: 28rpx;
+  font-weight: 400;
   color: #1F2937;
 }
 
 .nav-arrow {
-  font-size: 48rpx;
+  font-size: 40rpx;
   color: #D1D5DB;
   font-weight: 300;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 /* 功能区域 */
@@ -244,47 +243,60 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16rpx;
+  margin-bottom: 20rpx;
   padding: 0 4rpx;
 }
 
 .section-title {
-  font-size: 30rpx;
-  font-weight: 600;
+  font-size: 28rpx;
+  font-weight: 500;
   color: #1F2937;
 }
 
 .function-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12rpx;
+  gap: 16rpx;
 }
 
 .function-item {
   background: #FFFFFF;
-  border-radius: 20rpx;
-  padding: 40rpx 24rpx;
+  border-radius: 16rpx;
+  padding: 32rpx 24rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+  gap: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
 }
 
 .function-icon {
-  width: 96rpx;
-  height: 96rpx;
-  background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
-  border-radius: 24rpx;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 44rpx;
+}
+
+.create-icon {
+  background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+}
+
+.history-icon {
+  background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+}
+
+.icon-text {
+  color: #FFFFFF;
   font-size: 48rpx;
+  font-weight: 300;
 }
 
 .function-name {
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #1F2937;
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
 }
