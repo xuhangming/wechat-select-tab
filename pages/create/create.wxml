@@ -1,0 +1,161 @@
+<!--pages/create/create.wxml-->
+<view class="container">
+  <view class="form">
+    <!-- 抽签基本信息 -->
+    <view class="section">
+      <view class="section-title">抽签基本信息</view>
+      
+      <!-- 抽签标题 -->
+      <view class="form-item">
+        <view class="label">抽签标题 <text class="required">*</text></view>
+        <input 
+          class="input {{errors.title ? 'error' : ''}}" 
+          placeholder="请输入抽签标题（最多50字）" 
+          value="{{title}}"
+          bindinput="onTitleInput"
+          maxlength="50"
+        />
+        <view class="error-text" wx:if="{{errors.title}}">{{errors.title}}</view>
+      </view>
+
+      <!-- 抽签描述 -->
+      <view class="form-item">
+        <view class="label">抽签描述</view>
+        <textarea 
+          class="textarea {{errors.description ? 'error' : ''}}" 
+          placeholder="请输入抽签描述（选填）" 
+          value="{{description}}"
+          bindinput="onDescriptionInput"
+          maxlength="200"
+          auto-height
+        />
+        <view class="char-count">{{description.length}}/200</view>
+      </view>
+    </view>
+
+    <!-- 抽签选项设置 -->
+    <view class="section">
+      <view class="section-title">抽签选项设置</view>
+      <view class="section-desc">最多添加1000个选项</view>
+      
+      <view class="error-text" wx:if="{{errors.options}}">{{errors.options}}</view>
+      
+      <view class="options-list">
+        <view class="option-item" wx:for="{{options}}" wx:key="index">
+          <view class="option-number">{{index + 1}}</view>
+          <view class="option-inputs">
+            <input 
+              class="option-name" 
+              placeholder="选项名称" 
+              value="{{item.name}}"
+              data-index="{{index}}"
+              bindinput="onOptionNameInput"
+            />
+            <input 
+              class="option-quantity" 
+              type="digit" 
+              placeholder="数量" 
+              value="{{item.quantity}}"
+              data-index="{{index}}"
+              bindinput="onOptionQuantityInput"
+            />
+          </view>
+          <view class="option-actions">
+            <text class="remove-btn" data-index="{{index}}" bindtap="removeOption" wx:if="{{options.length > 1}}">✕</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="add-option-btn" bindtap="addOption">
+        <text class="add-icon">+</text> 添加选项 ({{options.length}}/1000)
+      </view>
+    </view>
+
+    <!-- 时间设置 -->
+    <view class="section">
+      <view class="section-title">时间设置</view>
+      <view class="section-desc">按天设置，默认开始时间为当前时间</view>
+      
+      <view class="error-text" wx:if="{{errors.time}}">{{errors.time}}</view>
+      
+      <!-- 开始日期 -->
+      <view class="form-item">
+        <view class="label">开始日期 <text class="required">*</text></view>
+        <picker 
+          mode="date" 
+          value="{{startDate}}" 
+          start="{{startDate}}"
+          bindchange="onStartDateChange"
+        >
+          <view class="picker {{errors.time ? 'error' : ''}}">
+            {{startDate || '请选择开始日期'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 结束日期 -->
+      <view class="form-item">
+        <view class="label">结束日期 <text class="required">*</text></view>
+        <picker 
+          mode="date" 
+          value="{{endDate}}" 
+          start="{{startDate}}"
+          bindchange="onEndDateChange"
+        >
+          <view class="picker {{errors.time ? 'error' : ''}}">
+            {{endDate || '请选择结束日期'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 持续天数显示 -->
+      <view class="duration-info" wx:if="{{startDate && endDate}}">
+        <text class="duration-label">持续时间：</text>
+        <text class="duration-value">{{durationDays}} 天</text>
+      </view>
+    </view>
+
+    <!-- 高级设置 -->
+    <view class="section">
+      <view class="section-title">高级设置</view>
+      <view class="section-desc">可选配置</view>
+      
+      <!-- 抽签口令 -->
+      <view class="form-item">
+        <view class="label">抽签口令</view>
+        <input 
+          class="input {{errors.password ? 'error' : ''}}" 
+          placeholder="设置口令后，参与者需要输入口令才能抽签（选填）" 
+          value="{{password}}"
+          bindinput="onPasswordInput"
+          maxlength="20"
+        />
+        <view class="hint-text">留空表示无需口令</view>
+      </view>
+
+      <!-- 结果查看权限 -->
+      <view class="form-item">
+        <view class="label">抽签结果查看权限</view>
+        <radio-group class="radio-group" bindchange="onPermissionChange">
+          <label class="radio-item">
+            <radio value="all" checked="{{resultViewPermission === 'all'}}" />
+            <text class="radio-text">所有人可见</text>
+          </label>
+          <label class="radio-item">
+            <radio value="participants" checked="{{resultViewPermission === 'participants'}}" />
+            <text class="radio-text">仅参与者可见</text>
+          </label>
+          <label class="radio-item">
+            <radio value="creator" checked="{{resultViewPermission === 'creator'}}" />
+            <text class="radio-text">仅创建者可见</text>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="submit-btn" bindtap="submitLottery" loading="{{loading}}">
+      {{loading ? '创建中...' : '创建抽签'}}
+    </button>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+<!--pages/history/history.wxml-->
+<view class="page">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{lotteryList.length === 0}}" class="empty-container">
+    <text class="empty-icon">📋</text>
+    <text class="empty-title">暂无抽签活动</text>
+    <text class="empty-hint">创建一个抽签活动开始吧</text>
+    <button class="create-button" bindtap="navigateToCreate">创建抽签</button>
+  </view>
+
+  <!-- 活动列表 -->
+  <view wx:else class="list-container">
+    <block wx:for="{{lotteryList}}" wx:key="_id">
+      <view class="lottery-card" bindtap="navigateToDetail" data-id="{{item._id}}">
+        <view class="card-content">
+          <view class="title-row">
+            <text class="card-title">{{item.title}}</text>
+          </view>
+          <view class="status-badge {{item.status}}">
+            <text class="status-text">{{item.status === 'ongoing' ? '进行中' : (item.status === 'not_started' ? '未开始' : '已结束')}}</text>
+          </view>
+          
+          <!-- 统计信息 -->
+          <view class="stats-row">
+            <text class="stats-icon">📊</text>
+            <text class="stats-text">已抽 {{item.assignedCount}}/{{item.totalCount}}</text>
+          </view>
+          
+          <view class="time-info">
+            <text class="time-icon">📅</text>
+            <text class="time-text">{{item.startTimeDisplay}} - {{item.endTimeDisplay}}</text>
+          </view>
+        </view>
+        <view class="arrow-icon">›</view>
+      </view>
+    </block>
+  </view>
+</view>

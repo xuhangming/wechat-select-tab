@@ -1,0 +1,455 @@
+/* pages/create/create.wxss - 轻拟物卡片风 + 渐变活力点缀 */
+
+/* ========== 容器基础 ========== */
+.container {
+  padding: 0 0 40rpx 0;
+  background: linear-gradient(180deg, #F8F9FF 0%, #F5F5F5 100%);
+  min-height: 100vh;
+}
+
+.form {
+  padding: 32rpx 24rpx;
+}
+
+/* ========== 分区卡片样式（关键class: section-card） ========== */
+.section {
+  background: #FFFFFF;
+  margin-bottom: 24rpx;
+  padding: 32rpx 28rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(79, 70, 229, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section:active {
+  transform: translateY(-2rpx);
+  box-shadow: 0 6rpx 20rpx rgba(79, 70, 229, 0.12);
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 8rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.section-title::before {
+  content: '';
+  width: 6rpx;
+  height: 28rpx;
+  background: linear-gradient(180deg, #4F46E5 0%, #7C3AED 100%);
+  border-radius: 3rpx;
+}
+
+.section-desc {
+  font-size: 24rpx;
+  color: #9CA3AF;
+  margin-bottom: 28rpx;
+  padding-left: 18rpx;
+}
+
+/* ========== 表单项 ========== */
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-size: 28rpx;
+  color: #374151;
+  margin-bottom: 16rpx;
+  font-weight: 600;
+  display: block;
+}
+
+.required {
+  color: #EF4444;
+  margin-left: 4rpx;
+}
+
+/* ========== 输入框样式 ========== */
+.input {
+  width: 100%;
+  height: 88rpx;
+  border: 2rpx solid #E5E7EB;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  background: #FAFBFC;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #7C3AED;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 4rpx rgba(124, 58, 237, 0.1);
+}
+
+.input.error {
+  border-color: #EF4444;
+  background: #FEF2F2;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 140rpx;
+  border: 2rpx solid #E5E7EB;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  background: #FAFBFC;
+  transition: all 0.3s ease;
+}
+
+.textarea:focus {
+  border-color: #7C3AED;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 4rpx rgba(124, 58, 237, 0.1);
+}
+
+.textarea.error {
+  border-color: #EF4444;
+  background: #FEF2F2;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 22rpx;
+  color: #9CA3AF;
+  margin-top: 8rpx;
+}
+
+/* ========== 时间选择器样式 ========== */
+.picker {
+  width: 100%;
+  height: 88rpx;
+  border: 2rpx solid #E5E7EB;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  color: #374151;
+  background: #FAFBFC;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.picker::after {
+  content: '📅';
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32rpx;
+}
+
+.picker:active {
+  border-color: #7C3AED;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 4rpx rgba(124, 58, 237, 0.1);
+}
+
+.picker.error {
+  border-color: #EF4444;
+  background: #FEF2F2;
+}
+
+.error-text {
+  color: #EF4444;
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+.hint-text {
+  font-size: 24rpx;
+  color: #9CA3AF;
+  margin-top: 8rpx;
+  padding-left: 8rpx;
+}
+
+/* ========== 类目输入区（关键class: category-card） ========== */
+.options-list {
+  margin-bottom: 20rpx;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  background: linear-gradient(135deg, #FAFBFF 0%, #F9FAFB 100%);
+  border-radius: 20rpx;
+  padding: 20rpx 20rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(79, 70, 229, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.option-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6rpx;
+  background: linear-gradient(180deg, #4F46E5 0%, #7C3AED 100%);
+}
+
+.option-item:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 24rpx rgba(79, 70, 229, 0.16);
+}
+
+.option-number {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+  color: white;
+  font-size: 26rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4rpx 12rpx rgba(79, 70, 229, 0.3);
+}
+
+.option-inputs {
+  flex: 1;
+  display: flex;
+  gap: 12rpx;
+}
+
+.option-name {
+  flex: 2;
+  height: 72rpx;
+  border: 2rpx solid #E5E7EB;
+  border-radius: 14rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  background: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.option-name:focus {
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 4rpx rgba(124, 58, 237, 0.1);
+}
+
+.option-quantity {
+  flex: 1;
+  height: 72rpx;
+  border: 2rpx solid #E5E7EB;
+  border-radius: 14rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  background: #FFFFFF;
+  text-align: center;
+  font-weight: 600;
+  color: #4F46E5;
+  transition: all 0.3s ease;
+}
+
+.option-quantity:focus {
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 4rpx rgba(124, 58, 237, 0.1);
+}
+
+.option-actions {
+  width: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.remove-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  color: white;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(239, 68, 68, 0.3);
+  transition: all 0.3s ease;
+}
+
+.remove-btn:active {
+  transform: scale(0.9);
+}
+
+/* ========== 添加类目按钮（空状态） ========== */
+.add-option-btn {
+  width: 100%;
+  height: 96rpx;
+  border: 3rpx dashed #C7D2FE;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7C3AED;
+  font-size: 28rpx;
+  font-weight: 600;
+  background: linear-gradient(135deg, #F5F3FF 0%, #FAF5FF 100%);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.add-option-btn::before {
+  content: '🎲';
+  position: absolute;
+  left: 50%;
+  top: -60rpx;
+  transform: translateX(-50%);
+  font-size: 48rpx;
+  opacity: 0.3;
+}
+
+.add-option-btn:active {
+  border-color: #7C3AED;
+  background: linear-gradient(135deg, #EDE9FE 0%, #F3E8FF 100%);
+  transform: scale(0.98);
+}
+
+.add-icon {
+  font-size: 36rpx;
+  margin-right: 8rpx;
+  font-weight: 700;
+}
+
+/* ========== 持续时间显示 ========== */
+.duration-info {
+  background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+  border: 2rpx solid #C7D2FE;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  margin-top: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(79, 70, 229, 0.08);
+}
+
+.duration-label {
+  font-size: 26rpx;
+  color: #6366F1;
+  font-weight: 500;
+}
+
+.duration-value {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #4F46E5;
+}
+
+/* ========== 单选框组 ========== */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 20rpx 24rpx;
+  background: linear-gradient(135deg, #FAFBFF 0%, #F9FAFB 100%);
+  border-radius: 16rpx;
+  border: 2rpx solid #E5E7EB;
+  transition: all 0.3s ease;
+}
+
+.radio-item:active {
+  border-color: #7C3AED;
+  background: linear-gradient(135deg, #F5F3FF 0%, #FAF5FF 100%);
+  transform: scale(0.98);
+}
+
+.radio-text {
+  font-size: 28rpx;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* ========== 主按钮（关键class: primary-btn） ========== */
+.submit-btn {
+  width: calc(100% - 48rpx);
+  height: 96rpx;
+  background: linear-gradient(120deg, #4F46E5 0%, #7C3AED 100%);
+  color: #FFFFFF;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  margin: 48rpx 24rpx 0;
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(79, 70, 229, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.submit-btn:active::before {
+  left: 100%;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 16rpx rgba(79, 70, 229, 0.3);
+}
+
+.submit-btn::after {
+  border: none;
+}
+
+.submit-btn[loading] {
+  background: linear-gradient(120deg, #818CF8 0%, #A78BFA 100%);
+  box-shadow: 0 4rpx 16rpx rgba(79, 70, 229, 0.2);
+}
+
+/* ========== 空状态优化 ========== */
+.empty-placeholder {
+  text-align: center;
+  padding: 60rpx 40rpx;
+  color: #9CA3AF;
+}
+
+.empty-placeholder::before {
+  content: '🎲';
+  display: block;
+  font-size: 96rpx;
+  margin-bottom: 16rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #6B7280;
+  margin-top: 12rpx;
+}

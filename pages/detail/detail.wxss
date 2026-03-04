@@ -1,0 +1,382 @@
+/* pages/detail/detail.wxss */
+
+/* 页面容器 */
+.page {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding-bottom: 140rpx;
+}
+
+/* 内容区域 */
+.content {
+  padding: 20rpx;
+}
+
+/* 加载状态 */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 活动信息卡片 - 渐变紫色背景 */
+.event-header-card {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-title-row {
+  margin-bottom: 20rpx;
+  padding-right: 100rpx;
+}
+
+.event-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.event-status-badge {
+  position: absolute;
+  top: 32rpx;
+  right: 32rpx;
+  padding: 12rpx 28rpx;
+  border-radius: 40rpx;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10rpx);
+}
+
+.event-status-badge.not_started {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.event-status-badge.ongoing {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.event-status-badge.ended {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.status-text {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.event-time-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.calendar-icon {
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+.time-text {
+  font-size: 26rpx;
+  color: #ffffff;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+
+/* 白色卡片通用样式 */
+.white-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 卡片头部 */
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28rpx;
+}
+
+.header-left-group {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.icon-circle {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.blue-gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+}
+
+.green-gradient {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+}
+
+.header-icon {
+  font-size: 34rpx;
+  line-height: 1;
+}
+
+.card-header-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.participant-total {
+  font-size: 24rpx;
+  color: #9ca3af;
+  margin-left: 4rpx;
+}
+
+.refresh-link {
+  font-size: 26rpx;
+  color: #3b82f6;
+  padding: 8rpx 24rpx;
+  border: 2rpx solid #3b82f6;
+  border-radius: 40rpx;
+  line-height: 1;
+}
+
+/* 抽签项目列表 */
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx;
+}
+
+.category-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.category-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-name {
+  font-size: 28rpx;
+  color: #374151;
+  font-weight: 500;
+}
+
+.category-progress {
+  font-size: 28rpx;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.progress-bar-bg {
+  height: 16rpx;
+  background: #e5e7eb;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  border-radius: 8rpx;
+  transition: width 0.3s ease;
+}
+
+/* 参与者列表 */
+.empty-participants {
+  padding: 80rpx 0;
+  text-align: center;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #9ca3af;
+}
+
+.participants-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.participant-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.participant-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+
+.participant-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  min-width: 0;
+}
+
+.participant-nickname {
+  font-size: 28rpx;
+  color: #1f2937;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.participant-date {
+  font-size: 24rpx;
+  color: #9ca3af;
+}
+
+.result-badge {
+  flex-shrink: 0;
+  padding: 10rpx 24rpx;
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  border-radius: 40rpx;
+}
+
+.result-text {
+  font-size: 24rpx;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* 底部操作栏 */
+.bottom-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #ffffff;
+  border-top: 1rpx solid #e5e7eb;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.06);
+  display: flex;
+  gap: 20rpx;
+  z-index: 100;
+}
+
+.share-btn {
+  flex: 0 0 auto;
+  width: 180rpx;
+  height: 92rpx;
+  background: #ffffff;
+  border: 2rpx solid #3b82f6;
+  color: #3b82f6;
+  border-radius: 46rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  font-size: 28rpx;
+  padding: 0;
+  line-height: 1;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+.share-icon {
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+.share-text {
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+.participate-btn {
+  flex: 1;
+  height: 92rpx;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  color: #ffffff;
+  font-size: 30rpx;
+  font-weight: bold;
+  border-radius: 46rpx;
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(168, 85, 247, 0.35);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.participate-btn::after {
+  border: none;
+}
+
+.participate-btn[disabled],
+.participate-btn.participated {
+  background: #e5e7eb;
+  color: #9ca3af;
+  box-shadow: none;
+}
+
+/* 错误状态 */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 28rpx;
+  padding: 40rpx;
+}
+
+.error-icon {
+  font-size: 120rpx;
+}
+
+.error-message {
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+.retry-btn {
+  width: 200rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  color: #ffffff;
+  font-size: 28rpx;
+  border-radius: 38rpx;
+  border: none;
+}
+
+.retry-btn::after {
+  border: none;
+}

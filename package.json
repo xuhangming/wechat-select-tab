@@ -1,0 +1,22 @@
+{
+  "name": "lottery-assignment-miniapp",
+  "version": "1.0.0",
+  "description": "微信小程序抽签系统",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "utils/**/*.js",
+      "!utils/**/*.test.js"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

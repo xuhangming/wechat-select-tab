@@ -1,0 +1,116 @@
+<!--pages/detail/detail.wxml-->
+<view class="page">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 主内容 -->
+  <view wx:elif="{{event}}" class="content">
+    <!-- 活动信息卡片 - 渐变紫色背景 -->
+    <view class="event-header-card">
+      <view class="event-title-row">
+        <text class="event-title">{{event.title}}</text>
+      </view>
+      <view class="event-status-badge {{status}}">
+        <text class="status-text">{{statusText}}</text>
+      </view>
+      <view class="event-time-row">
+        <text class="calendar-icon">📅</text>
+        <text class="time-text">{{event.startTimeDisplay}} - {{event.endTimeDisplay}}</text>
+      </view>
+    </view>
+
+    <!-- 抽签项目卡片 -->
+    <view class="white-card">
+      <view class="card-header-row">
+        <view class="icon-circle blue-gradient">
+          <text class="header-icon">📊</text>
+        </view>
+        <text class="card-header-title">抽签项目</text>
+      </view>
+      
+      <view class="categories-container">
+        <block wx:for="{{event.categories}}" wx:key="name">
+          <view class="category-row">
+            <view class="category-name-row">
+              <text class="category-name">{{item.name}}</text>
+              <text class="category-progress">{{item.quantity - item.remaining}}/{{item.quantity}}</text>
+            </view>
+            <view class="progress-bar-bg">
+              <view class="progress-bar-fill" style="width: {{(item.quantity - item.remaining) / item.quantity * 100}}%"></view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 参与者列表卡片 -->
+    <view class="white-card">
+      <view class="card-header-row">
+        <view class="header-left-group">
+          <view class="icon-circle green-gradient">
+            <text class="header-icon">👥</text>
+          </view>
+          <text class="card-header-title">参与者列表</text>
+          <text class="participant-total">共 {{results.length}} 人</text>
+        </view>
+        <text class="refresh-link" bindtap="refreshResults">刷新</text>
+      </view>
+      
+      <!-- 空状态 -->
+      <view wx:if="{{results.length === 0}}" class="empty-participants">
+        <text class="empty-text">暂无参与者</text>
+      </view>
+      
+      <!-- 参与者列表 -->
+      <view wx:else class="participants-container">
+        <block wx:for="{{results}}" wx:key="userId">
+          <view class="participant-row">
+            <!-- 头像 - 优先显示真实头像，否则显示默认头像 -->
+            <image class="participant-avatar" 
+                   src="{{item.userInfo.avatarUrl || defaultAvatar}}" 
+                   mode="aspectFill"
+                   data-index="{{index}}"
+                   binderror="onAvatarError"></image>
+            
+            <!-- 用户信息 -->
+            <view class="participant-details">
+              <text class="participant-nickname">{{item.userInfo.nickName || '匿名用户'}}</text>
+              <text class="participant-date">{{item.createTimeDisplay}}</text>
+            </view>
+            
+            <!-- 抽中标签 -->
+            <view class="result-badge">
+              <text class="result-text">{{item.category}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 错误状态 -->
+  <view wx:else class="error-container">
+    <text class="error-icon">❌</text>
+    <text class="error-message">加载失败</text>
+    <button class="retry-btn" bindtap="loadLotteryDetail">重试</button>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view wx:if="{{event}}" class="bottom-actions">
+    <button class="share-btn" open-type="share">
+      <text class="share-icon">🔗</text>
+      <text class="share-text">分享</text>
+    </button>
+    <button class="participate-btn {{hasParticipated ? 'participated' : ''}}" 
+            bindtap="participateLottery"
+            disabled="{{status !== 'ongoing' || hasParticipated || participating}}"
+            loading="{{participating}}">
+      <text wx:if="{{status === 'not_started'}}">活动未开始</text>
+      <text wx:elif="{{status === 'ended'}}">活动已结束</text>
+      <text wx:elif="{{hasParticipated}}">已参与</text>
+      <text wx:else>立即参与抽签</text>
+    </button>
+  </view>
+</view>
